@@ -57,24 +57,18 @@ public class Scraper {
     }
 
     private String getAlbumName(Document doc) {
-        Element pageInfo = doc.getElementById("EchoTopic").getElementsByTag("h2").get(0);
-        String albumName = pageInfo.text();
-        return albumName;
+        return doc.getElementById("EchoTopic").getElementsByTag("h2").get(0).text();
     }
 
     private Map<Integer, String> getFileTypesList(Document doc) {
         Element tableRow = doc.getElementById("songlist_header");
-        Elements headerCells = tableRow.getElementsByTag("th");
-
-        // get the complement of the header cells with file types
-        int numFileTypes = headerCells.size() - 4;
+        Elements fileTypeCells = tableRow.getElementsByAttributeValue("width", "60px");
+        int numFileTypes = fileTypeCells.size();
 
         // insert the filetypes into a hashmap
-        Map<Integer, String> fileTypes = new HashMap<>(numFileTypes);
-
-        int index = 0;
-        for (int i = 3; i < numFileTypes + 3; i++) {
-            fileTypes.put(index++, headerCells.get(i).text());
+        Map<Integer, String> fileTypes = new HashMap<>();
+        for(int i = 0; i < numFileTypes; i++) {
+            fileTypes.put(i, fileTypeCells.get(i).text());
         }
         return fileTypes;
     }
