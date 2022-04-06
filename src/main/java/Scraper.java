@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -26,22 +27,10 @@ public class Scraper {
     }
 
     public void getSongs() {
-        Map<Integer, String> fileTypes = getFileTypesList(albumDoc);
-        int fileTypeIndex = 0;
-        String selectedFileType = "";
+        String albumName = getAlbumName(albumDoc);
+        System.out.println("Downloading the album: " + albumName);
 
-        if (fileTypes.size() > 1) {
-            Scanner reader = new Scanner(System.in);
-            System.out.println("Multiple filetypes found. Please select a filetype.");
-
-            for(int i = 0; i < fileTypes.size(); i++) {
-                System.out.println(i + 1 + ": " + fileTypes.get(i));
-            }
-            fileTypeIndex = reader.nextInt() - 1;
-            selectedFileType = fileTypes.get(fileTypeIndex);
-        } else {
-            selectedFileType = fileTypes.get(0);
-        }
+        String selectedFileType = getSelectedFileType();
 
         Element songTable = albumDoc.getElementById("songlist");
         Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
@@ -51,24 +40,26 @@ public class Scraper {
             String currentSongURL = "https://downloads.khinsider.com/" + currentSong.attr("href");
 
             try {
-                // connect to the current song's webpage and
+                // connect to the current song's webpage and get the song's name and url and download the current song
                 Document currentSongDoc = Jsoup.connect(currentSongURL).get();
                 Element pageInfo = currentSongDoc.getElementById("EchoTopic");
-                Elements paragraphs = pageInfo.getElementsByTag("p");
 
-                // get the complement of the paragraph tags with download links
-                int numFileTypes = paragraphs.size() - 4;
+                String songName = pageInfo.getElementsByTag("p").get(2).getElementsByTag("b").get(1).text();
+                String songURL = pageInfo.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
 
-//                // get filetype urls
-//                for (int i = 3; i < numFileTypes + 3; i++) {
-//                    String mp3URL = paragraphs.get(3).getElementsByTag("a").attr("href");
-//                    String flacURL = paragraphs.get(4).getElementsByTag("a").attr("href");
-//                    System.out.println(i + " " + paragraphs.get(i).getElementsByTag("a").attr("href"));
-//                }
+                String filePath = "downloads/" + albumName + "/" + songName + "." + selectedFileType;
+                System.out.println(filePath);
+                downloadSong(songURL, filePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private String getAlbumName(Document doc) {
+        Element pageInfo = doc.getElementById("EchoTopic").getElementsByTag("h2").get(0);
+        String albumName = pageInfo.text();
+        return albumName;
     }
 
     private Map<Integer, String> getFileTypesList(Document doc) {
@@ -88,9 +79,28 @@ public class Scraper {
         return fileTypes;
     }
 
-    private void downloadSong(String url) {
+    private String getSelectedFileType() {
+        Map<Integer, String> fileTypes = getFileTypesList(albumDoc);
+        String selectedFileType;
+
+        if (fileTypes.size() > 1) {
+            Scanner reader = new Scanner(System.in);
+            System.out.println("Multiple filetypes found. Please select a filetype.");
+
+            for (int i = 0; i < fileTypes.size(); i++) {
+                System.out.println(i + 1 + ": " + fileTypes.get(i));
+            }
+            int fileTypeIndex = reader.nextInt() - 1;
+            selectedFileType = fileTypes.get(fileTypeIndex).toLowerCase(Locale.ROOT);
+        } else {
+            selectedFileType = fileTypes.get(0).toLowerCase(Locale.ROOT);
+        }
+        return selectedFileType;
+    }
+
+    private void downloadSong(String url, String filePath) {
         try {
-            FileUtils.copyURLToFile(new URL(url), new File(""));
+            FileUtils.copyURLToFile(new URL(url), new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }
