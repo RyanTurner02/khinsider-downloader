@@ -35,6 +35,10 @@ public class Scraper {
         Element songTable = albumDoc.getElementById("songlist");
         Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
 
+        int index = 1;
+        int numSongs = songLinks.size();
+        int numSongsLength = getNumDigits(numSongs);
+
         // iterate through the song table
         for (Element currentSong : songLinks) {
             String currentSongURL = "https://downloads.khinsider.com/" + currentSong.attr("href");
@@ -47,9 +51,10 @@ public class Scraper {
                 String songName = pageInfo.getElementsByTag("p").get(2).getElementsByTag("b").get(1).text();
                 String songURL = pageInfo.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
 
-                String filePath = "downloads/" + albumName + "/" + songName + "." + selectedFileType;
-                System.out.println(filePath);
+                String filePath = String.format("downloads/%s/%s %s.%s", albumName, getFormattedIndex(numSongsLength, index), songName, selectedFileType);
+                System.out.printf("[%d/%d] %s\n", index, numSongs, filePath);
                 downloadSong(songURL, filePath);
+                index++;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -90,6 +95,15 @@ public class Scraper {
             selectedFileType = fileTypes.get(0).toLowerCase(Locale.ROOT);
         }
         return selectedFileType;
+    }
+
+    private int getNumDigits(int num) {
+        char[] digits = String.valueOf(num).toCharArray();
+        return digits.length;
+    }
+
+    private String getFormattedIndex(int numDigits, int index) {
+        return String.format("%0" + numDigits + "d", index);
     }
 
     private void downloadSong(String url, String filePath) {
