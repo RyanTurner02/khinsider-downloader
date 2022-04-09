@@ -33,9 +33,10 @@ public class Scraper {
         String selectedFileType = getSelectedFileType();
 
         Element songTable = albumDoc.getElementById("songlist");
+        Elements songNames = songTable.getElementsByClass("clickable-row").not("[align=\"right\"]");
         Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
 
-        int index = 1;
+        int index = 0;
         int numSongs = songLinks.size();
         int numSongsLength = getNumDigits(numSongs);
 
@@ -44,15 +45,16 @@ public class Scraper {
             String currentSongURL = "https://downloads.khinsider.com/" + currentSong.attr("href");
 
             try {
-                // connect to the current song's webpage and get the song's name and url and download the current song
+                // connect to the current song's webpage
                 Document currentSongDoc = Jsoup.connect(currentSongURL).get();
-                Element pageInfo = currentSongDoc.getElementById("EchoTopic");
+                Element pageContent = currentSongDoc.getElementById("pageContent");
 
-                String songName = pageInfo.getElementsByTag("p").get(2).getElementsByTag("b").get(1).text();
-                String songURL = pageInfo.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
+                // get song information
+                String songURL = pageContent.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
 
-                String filePath = String.format("downloads/%s/%s %s.%s", albumName, getFormattedIndex(numSongsLength, index), songName, selectedFileType);
-                System.out.printf("[%d/%d] %s\n", index, numSongs, filePath);
+                // download the current song
+                String filePath = String.format("downloads/%s/%s %s.%s", albumName, getFormattedIndex(numSongsLength, index + 1), songNames.get(index).text(), selectedFileType);
+                System.out.printf("[%d/%d] %s\n", index + 1, numSongs, filePath);
                 downloadSong(songURL, filePath);
                 index++;
             } catch (IOException e) {
@@ -62,7 +64,7 @@ public class Scraper {
     }
 
     private String getAlbumName(Document doc) {
-        return doc.getElementById("EchoTopic").getElementsByTag("h2").get(0).text();
+        return doc.getElementsByTag("h2").get(0).text();
     }
 
     private Map<Integer, String> getFileTypesList(Document doc) {
@@ -72,7 +74,7 @@ public class Scraper {
 
         // insert the filetypes into a hashmap
         Map<Integer, String> fileTypes = new HashMap<>();
-        for(int i = 0; i < numFileTypes; i++) {
+        for (int i = 0; i < numFileTypes; i++) {
             fileTypes.put(i, fileTypeCells.get(i).text());
         }
         return fileTypes;
