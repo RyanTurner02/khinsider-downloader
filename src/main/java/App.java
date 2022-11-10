@@ -3,21 +3,21 @@ import org.apache.commons.cli.*;
 public class App {
     public static void main(String[] args) {
         Options options = new Options();
-        options.addOption("h", "Show this help message and exit");
-        options.addOption("c", "Display a counter next to each song when downloading");
-        options.addOption("i", "Add an index number to the file name of each song when downloading");
+        options.addOption("h", "help", false, "Show this help message and exit");
+        options.addOption("c", "counter", false, "Display a counter next to each song when downloading");
+        options.addOption("i", "indices", false, "Add an index number to the file name of each song when downloading");
 
         CommandLineParser defaultParser = new DefaultParser();
         String albumURL = "";
         boolean countOption = false;
-        boolean indexOption = false;
+        boolean indicesOption = false;
 
         try {
             CommandLine cmd = defaultParser.parse(options, args);
 
             if (cmd.hasOption("h") || args.length == 0) {
                 HelpFormatter formatter = new HelpFormatter();
-                formatter.printHelp("khi-dl.jar [-h] [-c] [-i] [albumURL]", options);
+                formatter.printHelp("java -jar khi-dl.jar [-h | --help] [-c | --counter] [-i | --indices] [albumURL]", options);
                 System.exit(0);
             }
 
@@ -26,7 +26,7 @@ public class App {
             }
 
             if (cmd.hasOption("i")) {
-                indexOption = true;
+                indicesOption = true;
             }
 
             // check if the user entered the album url last
@@ -40,7 +40,7 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        Scraper scraper = new Scraper(albumURL, countOption, indexOption);
+        Scraper scraper = new Scraper(albumURL, countOption, indicesOption);
         scraper.getSongs();
     }
 }
