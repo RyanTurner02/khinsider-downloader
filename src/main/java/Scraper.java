@@ -14,10 +14,14 @@ import java.util.Scanner;
 
 public class Scraper {
     private String url;
+    private boolean countOption;
+    private boolean indicesOption;
     private Document albumDoc;
 
-    public Scraper(String url) {
+    public Scraper(String url, boolean countOption, boolean indicesOption) {
         this.url = url;
+        this.countOption = countOption;
+        this.indicesOption = indicesOption;
 
         try {
             this.albumDoc = Jsoup.connect(url).get();
@@ -53,8 +57,21 @@ public class Scraper {
                 String songURL = pageContent.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
 
                 // download the current song
-                String filePath = String.format("downloads/%s/%s %s.%s", albumName, getFormattedIndex(numSongsLength, index + 1), songNames.get(index).text(), selectedFileType);
-                System.out.printf("[%d/%d] %s\n", index + 1, numSongs, filePath);
+                String filePath = String.format("downloads/%s/", albumName);
+
+                // add the current song's index
+                if (indicesOption) {
+                    filePath += String.format("%d. ", index + 1);
+                }
+
+                filePath += String.format("%s.%s", songNames.get(index).text(), selectedFileType);
+
+                // display the counter
+                if (countOption) {
+                    System.out.printf("[%d/%d] ", index + 1, numSongs);
+                }
+
+                System.out.printf("%s\n", filePath);
                 downloadSong(songURL, filePath);
                 index++;
             } catch (IOException e) {
