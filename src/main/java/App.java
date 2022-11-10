@@ -40,7 +40,7 @@ public class App {
             throw new RuntimeException(e);
         }
 
-        Scraper scraper = new Scraper(albumURL);
+        Scraper scraper = new Scraper(albumURL, countOption, indexOption);
         scraper.getSongs();
     }
 }

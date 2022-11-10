@@ -14,10 +14,14 @@ import java.util.Scanner;
 
 public class Scraper {
     private String url;
+    private boolean countOption;
+    private boolean indexOption;
     private Document albumDoc;
 
-    public Scraper(String url) {
+    public Scraper(String url, boolean countOption, boolean indexOption) {
         this.url = url;
+        this.countOption = countOption;
+        this.indexOption = indexOption;
 
         try {
             this.albumDoc = Jsoup.connect(url).get();
