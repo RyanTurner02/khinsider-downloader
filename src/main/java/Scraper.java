@@ -59,12 +59,14 @@ public class Scraper {
                 // download the current song
                 String filePath = String.format("downloads/%s/", albumName);
 
+                // add the current song's index
                 if (indicesOption) {
                     filePath += String.format("%d. ", index + 1);
                 }
 
                 filePath += String.format("%s.%s", songNames.get(index).text(), selectedFileType);
 
+                // display the counter
                 if (countOption) {
                     System.out.printf("[%d/%d] ", index + 1, numSongs);
                 }
