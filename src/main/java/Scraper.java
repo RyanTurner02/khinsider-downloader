@@ -100,10 +100,10 @@ public class Scraper {
 
         if (fileTypes.size() > 1) {
             Scanner reader = new Scanner(System.in);
-            System.out.println("Multiple filetypes found. Please select a filetype.");
+            System.out.println("Multiple filetypes found. Please select a filetype:");
 
             for (int i = 0; i < fileTypes.size(); i++) {
-                System.out.println(i + 1 + ": " + fileTypes.get(i));
+                System.out.printf("[%d]. %s\n", i + 1, fileTypes.get(i));
             }
             int fileTypeIndex = reader.nextInt() - 1;
             selectedFileType = fileTypes.get(fileTypeIndex).toLowerCase(Locale.ROOT);
