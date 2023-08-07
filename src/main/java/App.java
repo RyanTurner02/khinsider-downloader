@@ -41,6 +41,6 @@ public class App {
         }
 
         Scraper scraper = new Scraper(albumURL, countOption, indicesOption);
-        scraper.getSongs();
+        scraper.downloadAlbum();
     }
 }

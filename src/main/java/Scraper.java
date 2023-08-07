@@ -30,7 +30,7 @@ public class Scraper {
         }
     }
 
-    public void getSongs() {
+    public void downloadAlbum() {
         String albumName = getAlbumName(albumDoc);
         System.out.println("Downloading the album: " + albumName);
 
@@ -61,7 +61,7 @@ public class Scraper {
 
                 // add the current song's index
                 if (indicesOption) {
-                    filePath += String.format("%d. ", index + 1);
+                    filePath += getFormattedIndex(numSongsLength, index + 1);
                 }
 
                 filePath += String.format("%s.%s", songNames.get(index).text(), selectedFileType);
@@ -122,7 +122,7 @@ public class Scraper {
     }
 
     private String getFormattedIndex(int numDigits, int index) {
-        return String.format("%0" + numDigits + "d", index);
+        return String.format("%0" + numDigits + "d. ", index);
     }
 
     private void downloadSong(String url, String filePath) {
