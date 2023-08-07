@@ -74,7 +74,7 @@ public class Scraper {
                         counterString += " ";
                     }
 
-                    counterString += (index + 1) + "/" + numSongs + "]";
+                    counterString += (index + 1) + "/" + numSongs + "] ";
                     System.out.print(counterString);
                 }
 
