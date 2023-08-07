@@ -65,7 +65,17 @@ public class Scraper {
 
                 // display the counter
                 if (countOption) {
-                    System.out.printf("[%d/%d] ", index + 1, numSongs);
+                    String counterString = "[";
+
+                    // add left padding to the current index if needed
+                    int numPadding = getNumDigits(numSongs) - getNumDigits(index + 1);
+
+                    for(int i = 0; i < numPadding; i++) {
+                        counterString += " ";
+                    }
+
+                    counterString += (index + 1) + "/" + numSongs + "]";
+                    System.out.print(counterString);
                 }
 
                 System.out.printf("%s\n", filePath);
