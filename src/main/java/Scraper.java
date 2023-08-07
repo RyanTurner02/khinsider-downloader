@@ -53,13 +53,10 @@ public class Scraper {
                 Document currentSongDoc = Jsoup.connect(currentSongURL).get();
                 Element pageContent = currentSongDoc.getElementById("pageContent");
 
-                // get song information
                 String songURL = pageContent.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
-
-                // download the current song
                 String filePath = String.format("downloads/%s/", albumName);
 
-                // add the current song's index
+                // add the current song's index to the file path
                 if (indicesOption) {
                     filePath += getFormattedIndex(numSongsLength, index + 1);
                 }
