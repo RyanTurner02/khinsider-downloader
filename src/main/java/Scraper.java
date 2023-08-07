@@ -55,6 +55,7 @@ public class Scraper {
 
                 String songURL = pageContent.getElementsByAttributeValueEnding("href", selectedFileType).attr("href");
                 String filePath = String.format("downloads/%s/", albumName);
+                String counterString = "";
 
                 // add the current song's index to the file path
                 if (indicesOption) {
@@ -65,7 +66,7 @@ public class Scraper {
 
                 // display the counter
                 if (countOption) {
-                    String counterString = "[";
+                    counterString += "[";
 
                     // add left padding to the current index if needed
                     int numPadding = getNumDigits(numSongs) - getNumDigits(index + 1);
@@ -75,12 +76,17 @@ public class Scraper {
                     }
 
                     counterString += (index + 1) + "/" + numSongs + "] ";
-                    System.out.print(counterString);
                 }
 
-                System.out.printf("%s\n", filePath);
-                downloadSong(songURL, filePath);
                 index++;
+
+                // check if the song already exists
+                if(new File(filePath).exists()) {
+                    continue;
+                }
+
+                System.out.printf("%s%s\n", counterString, filePath);
+                downloadSong(songURL, filePath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
