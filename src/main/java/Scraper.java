@@ -152,6 +152,7 @@ public class Scraper {
     public void downloadPictures() {
         String filePath = "downloads/" + getAlbumName(albumDoc) + "/img/";
         Elements pictures = albumDoc.getElementsByClass("albumImage").select("a");
+        int index = 1;
 
         // iterate through each picture
         for(Element currentPicture : pictures) {
@@ -163,7 +164,19 @@ public class Scraper {
 
             String currentFilePath = filePath + currentPictureName;
 
+            // check if the picture already exists
+            if(new File(currentFilePath).exists()) {
+                index++;
+                continue;
+            }
+
             // download the current picture
+            if(countOption) {
+                System.out.printf("[%d/%d] ", index++, pictures.size());
+            }
+
+            System.out.printf("%s\n", currentFilePath);
+
             try {
                 FileUtils.copyURLToFile(new URL(currentPictureURL), new File(currentFilePath));
             } catch(IOException e) {
