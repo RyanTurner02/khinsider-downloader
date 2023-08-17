@@ -94,7 +94,10 @@ public class Scraper {
     }
 
     private String getAlbumName(Document doc) {
-        return doc.getElementsByTag("h2").get(0).text();
+        String[] urlArr = url.split("/");
+        String albumName = urlArr[urlArr.length - 1];
+
+        return albumName;
     }
 
     private Map<Integer, String> getFileTypesList(Document doc) {
