@@ -148,4 +148,27 @@ public class Scraper {
             e.printStackTrace();
         }
     }
+
+    public void downloadPictures() {
+        String filePath = "downloads/" + getAlbumName(albumDoc) + "/img/";
+        Elements pictures = albumDoc.getElementsByClass("albumImage").select("a");
+
+        // iterate through each picture
+        for(Element currentPicture : pictures) {
+            // get file information
+            String currentPictureURL = currentPicture.attr("href");
+
+            String[] urlArr = currentPictureURL.split("/");
+            String currentPictureName = urlArr[urlArr.length - 1];
+
+            String currentFilePath = filePath + currentPictureName;
+
+            // download the current picture
+            try {
+                FileUtils.copyURLToFile(new URL(currentPictureURL), new File(currentFilePath));
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
