@@ -4,7 +4,7 @@ public class App {
     public static void main(String[] args) {
         Options options = new Options();
         options.addOption("h", "help", false, "Show this help message and exit");
-        options.addOption("c", "counter", false, "Display a counter next to each song when downloading");
+        options.addOption("c", "counter", false, "Display a counter next to each song and image when downloading");
         options.addOption("i", "indices", false, "Add an index number to the file name of each song when downloading");
         options.addOption("p", "pictures", false, "Download the images alongside the album if available");
 
@@ -19,7 +19,7 @@ public class App {
 
             if (cmd.hasOption("h") || args.length == 0) {
                 HelpFormatter formatter = new HelpFormatter();
-                formatter.printHelp("java -jar khi-dl.jar [-h | --help] [-c | --counter] [-i | --indices] [-p | --pictures] [albumURL]", options);
+                formatter.printHelp("java -jar khinsider-downloader.jar [-c] [-h] [-i] [-p] [albumURL]", options);
                 System.exit(0);
             }
 
