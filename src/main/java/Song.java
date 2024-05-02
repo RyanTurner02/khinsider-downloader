@@ -1,12 +1,12 @@
 public class Song {
     private String name;
-    private int cdNumber;
-    private int trackNumber;
+    private String fileType;
+    private String downloadLink;
 
-    public Song(String name, int cdNumber, int trackNumber) {
+    public Song(String name, String fileType, String downloadLink) {
         this.name = name;
-        this.cdNumber = cdNumber;
-        this.trackNumber = trackNumber;
+        this.fileType = fileType;
+        this.downloadLink = downloadLink;
     }
 
     public String getName() {
@@ -17,19 +17,28 @@ public class Song {
         this.name = name;
     }
 
-    public int getCDNumber() {
-        return cdNumber;
+    public String getFileType() {
+        return fileType;
     }
 
-    public void setCDNumber(int cdNumber) {
-        this.cdNumber = cdNumber;
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 
-    public int getTrackNumber() {
-        return trackNumber;
+    public String getDownloadLink() {
+        return downloadLink;
     }
 
-    public void setTrackNumber(int trackNumber) {
-        this.trackNumber = trackNumber;
+    public void setDownloadLink(String downloadLink) {
+        this.downloadLink = downloadLink;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "name='" + name + '\'' +
+                ", fileType='" + fileType + '\'' +
+                ", downloadLink='" + downloadLink + '\'' +
+                '}';
     }
 }

@@ -34,10 +34,10 @@ public class App {
         }
 
         Scraper scraper = new Scraper(albumURL);
-        scraper.downloadAlbum();
+        scraper.scrapeAlbum();
 
         if (imagesFlag) {
-            scraper.downloadImages();
+//            scraper.downloadImages();
         }
     }
 }

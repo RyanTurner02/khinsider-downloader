@@ -1,19 +1,30 @@
 
-
-java:S1488c"aImmediately return this expression instead of assigning it to the temporary variable "albumName".(çÅ¤ÒJ$81c3df1a-8c66-4a17-ae2b-e4260792003c
-k	java:S106-"+Replace this use of System.out by a logger.(ªÕÙûÿÿÿÿJ$9a5fbf05-deb3-4f64-8fc4-466d552d7fd6
-’
-java:S3457Y"Q%n should be used in place of \n to produce the platform-specific line separator.(‚¼ÕŸıÿÿÿÿJ$3eee1c0e-a752-4a67-9903-8dd7318fa50c
-k	java:S106Y"+Replace this use of System.out by a logger.(‚¼ÕŸıÿÿÿÿJ$7348058b-5036-4bac-8dc6-4d150d898b81
-e
-java:S1172a"*Remove this unused method parameter "doc".(œÀÎ=J$d3c7beb8-5e07-4c5e-8c78-3031a41d47c7
-k	java:S106{"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿJ$e307545a-9239-4f85-805b-e71c3c4cabc3
-’
-java:S3457~"Q%n should be used in place of \n to produce the platform-specific line separator.(ŒÈè„ÿÿÿÿÿJ$e5ebd03c-4d4a-459d-8ed1-662588166902
-k	java:S106~"+Replace this use of System.out by a logger.(ŒÈè„ÿÿÿÿÿJ$03ee9d8f-9341-4d3d-87f0-3681d50ccfa6
-ƒ
-java:S3457"AFormat specifiers should be used instead of string concatenation.(÷ŸçÊüÿÿÿÿJ$ead9c603-fa87-43c3-8139-cda12562e9f3
-g	java:S106°"+Replace this use of System.out by a logger.(¤½Ã‹J$5c3c9ea3-794f-4538-a6c5-49b8f219ed09
-“
-java:S3457³"Q%n should be used in place of \n to produce the platform-specific line separator.(ÈÖÔ¥ÿÿÿÿÿJ$19be8d19-1c8b-4394-9838-6fad6d27304e
-l	java:S106³"+Replace this use of System.out by a logger.(ÈÖÔ¥ÿÿÿÿÿJ$e86bbe75-2f86-4311-ae57-c53452a39398
+¥
+java:S1488¬"aImmediately return this expression instead of assigning it to the temporary variable "albumName".(çÅ¤Ò8ËÙÚÙó1J$b14418c9-4ec9-42a3-aea9-8b32e3a60b7c
+É
+java:S1186p"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ñù²¿ıÿÿÿÿ8äÚÚÙó1J$1518f0ca-3abc-46ca-984c-6ea878af0eef
+r	java:S1063"+Replace this use of System.out by a logger.(îÎ¢üÿÿÿÿ8êÚÚÙó1J$6745b1f2-89ef-4079-aae2-6d06f40b76fe
+r	java:S106="+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8íÚÚÙó1J$2f75b401-220f-43f5-b936-cb3b19c1c9cf
+m	java:S106D"+Replace this use of System.out by a logger.(ø—µÛ8îÚÚÙó1J$d609a572-a4e8-46fb-a644-b272d7b2dccc
+”
+java:S3457P"Q%n should be used in place of \n to produce the platform-specific line separator.(¤¢û8ïÚÚÙó1J$e181be12-a2d5-4451-9e33-3160142f8ec1
+m	java:S106P"+Replace this use of System.out by a logger.(¤¢û8ïÚÚÙó1J$a6df07d4-bc25-4f69-a065-3b51badc85c0
+m	java:S106m"+Replace this use of System.out by a logger.(¥È¼Ë8óÚÚÙó1J$a7c24267-8ffc-43d1-822d-52dab9c21f58
+r	java:S106v"+Replace this use of System.out by a logger.(ªÕÙûÿÿÿÿ8ôÚÚÙó1J$5cda71bd-56b6-470a-a047-dbc285a6ead2
+š
+java:S3457¢"Q%n should be used in place of \n to produce the platform-specific line separator.(‚¼ÕŸıÿÿÿÿ8ùÚÚÙó1J$e0a5328e-b51e-4006-89ea-078468e77b14
+s	java:S106¢"+Replace this use of System.out by a logger.(‚¼ÕŸıÿÿÿÿ8ùÚÚÙó1J$00eac629-02d9-4210-95da-cf4f6dd66ca1
+m
+java:S1172ª"*Remove this unused method parameter "doc".(œÀÎ=8úÚÚÙó1J$75ac3279-aa2e-4e1a-9945-9ce9bd913635
+s	java:S106Ä"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8şÚÚÙó1J$640e21b7-5bf3-49d9-993d-ef9195e1bd74
+š
+java:S3457Ç"Q%n should be used in place of \n to produce the platform-specific line separator.(ŒÈè„ÿÿÿÿÿ8şÚÚÙó1J$88585209-6209-4eec-a2b1-f542eda7e123
+s	java:S106Ç"+Replace this use of System.out by a logger.(ŒÈè„ÿÿÿÿÿ8şÚÚÙó1J$29c23e84-965c-41d2-9517-e9577a83a60d
+Š
+java:S3457×"AFormat specifiers should be used instead of string concatenation.(÷ŸçÊüÿÿÿÿ8€ÛÚÙó1J$de07f6c7-74c3-45cc-8150-114813ad6d0f
+n	java:S106ù"+Replace this use of System.out by a logger.(¤½Ã‹8ƒÛÚÙó1J$f1a8f080-3a7a-4c13-a9bb-64484c0d149f
+š
+java:S3457ü"Q%n should be used in place of \n to produce the platform-specific line separator.(ÈÖÔ¥ÿÿÿÿÿ8„ÛÚÙó1J$26a2fb00-eeda-45e8-b894-3bae61c91bf6
+s	java:S106ü"+Replace this use of System.out by a logger.(ÈÖÔ¥ÿÿÿÿÿ8„ÛÚÙó1J$eda79bd0-b61e-4b77-a2bb-7e18f1926a47
+~
+java:S1144p"6Remove this unused private "scrapeAlbumImages" method.(Ñù²¿ıÿÿÿÿ8…ÛÚÙó1J$b4e4cd05-a0a8-4157-90d9-d6237e013ca7

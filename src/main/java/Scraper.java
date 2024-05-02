@@ -7,19 +7,19 @@ import org.jsoup.select.Elements;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
+import java.net.URLDecoder;
+import java.util.*;
 
 public class Scraper {
     private String url;
+    private Album album;
     private boolean countOption;
     private boolean indicesOption;
     private Document albumDoc;
 
     public Scraper(String url) {
         this.url = url;
+        this.album = new Album();
 
         try {
             this.albumDoc = Jsoup.connect(url).get();
@@ -28,16 +28,89 @@ public class Scraper {
         }
     }
 
-    public Scraper(String url, boolean countOption, boolean indicesOption) {
-        this.url = url;
-        this.countOption = countOption;
-        this.indicesOption = indicesOption;
+    public void scrapeAlbum() {
+        scrapeFileType();
+        String userFileType = getUserFileType();
+        scrapeSongs(userFileType);
+    }
 
-        try {
-            this.albumDoc = Jsoup.connect(url).get();
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void scrapeFileType() {
+        Element tableRow = albumDoc.getElementById("songlist_header");
+        Elements fileTypeCells = tableRow.getElementsByAttributeValue("width", "60px");
+
+        for (Element fileTypeCell : fileTypeCells) {
+            String fileType = String.format(".%s", fileTypeCell.text().toLowerCase());
+            album.addFileType(fileType);
         }
+    }
+
+    private String getUserFileType() {
+        List<String> fileTypes = new ArrayList<>(album.getSongs().keySet());
+
+        if (fileTypes.isEmpty()) {
+            System.out.println("Could not retrieve any file types.");
+            System.exit(1);
+        }
+
+        if (fileTypes.size() == 1) {
+            return fileTypes.get(0);
+        }
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Multiple filetypes found. Please select a filetype:");
+        printFileTypes(fileTypes);
+
+        int userOption = scanner.nextInt() - 1;
+        boolean isOutOfBounds = userOption < 0 || userOption >= fileTypes.size();
+
+        if (isOutOfBounds) {
+            System.out.println("Invalid option: out of bounds.");
+            System.exit(1);
+        }
+
+        scanner.close();
+        return fileTypes.get(userOption);
+    }
+
+    private void printFileTypes(List<String> fileTypes) {
+        int counter = 1;
+
+        for (String fileType : fileTypes) {
+            System.out.printf("[%d] %s\n", counter, fileType);
+            counter++;
+        }
+    }
+
+    private void scrapeSongs(String userFileType) {
+        Element songTable = albumDoc.getElementById("songlist");
+        Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
+
+        for (Element songLink : songLinks) {
+            String songURL = String.format("https://downloads.khinsider.com/%s", songLink.attr("href"));
+
+            try {
+                Document songDoc = Jsoup.connect(songURL).get();
+                Element pageContent = songDoc.getElementById("pageContent");
+                Elements songDownloadElements = pageContent.getElementsByTag("p").select("a[href$=" + userFileType + "]");
+                Element songDownloadElement = songDownloadElements.first();
+
+                String songDownloadLink = songDownloadElement.attr("href");
+                String songName = songDownloadLink.substring(songDownloadLink.lastIndexOf("/") + 1);
+                String songNameDecoded = URLDecoder.decode(songName, "UTF-8");
+                String songFileType = songNameDecoded.substring(songNameDecoded.lastIndexOf("."));
+
+                Song song = new Song(songNameDecoded, songFileType, songDownloadLink);
+                album.addSong(song, songFileType);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(album);
+    }
+
+    private void scrapeAlbumImages() {
+
     }
 
     public void downloadAlbum() {
