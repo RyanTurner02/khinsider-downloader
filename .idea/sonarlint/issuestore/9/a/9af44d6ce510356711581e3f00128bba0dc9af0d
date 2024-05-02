@@ -1,0 +1,19 @@
+
+
+java:S1488c"aImmediately return this expression instead of assigning it to the temporary variable "albumName".(çÅ¤ÒJ$81c3df1a-8c66-4a17-ae2b-e4260792003c
+k	java:S106-"+Replace this use of System.out by a logger.(ªÕÙûÿÿÿÿJ$9a5fbf05-deb3-4f64-8fc4-466d552d7fd6
+’
+java:S3457Y"Q%n should be used in place of \n to produce the platform-specific line separator.(‚¼ÕŸıÿÿÿÿJ$3eee1c0e-a752-4a67-9903-8dd7318fa50c
+k	java:S106Y"+Replace this use of System.out by a logger.(‚¼ÕŸıÿÿÿÿJ$7348058b-5036-4bac-8dc6-4d150d898b81
+e
+java:S1172a"*Remove this unused method parameter "doc".(œÀÎ=J$d3c7beb8-5e07-4c5e-8c78-3031a41d47c7
+k	java:S106{"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿJ$e307545a-9239-4f85-805b-e71c3c4cabc3
+’
+java:S3457~"Q%n should be used in place of \n to produce the platform-specific line separator.(ŒÈè„ÿÿÿÿÿJ$e5ebd03c-4d4a-459d-8ed1-662588166902
+k	java:S106~"+Replace this use of System.out by a logger.(ŒÈè„ÿÿÿÿÿJ$03ee9d8f-9341-4d3d-87f0-3681d50ccfa6
+ƒ
+java:S3457"AFormat specifiers should be used instead of string concatenation.(÷ŸçÊüÿÿÿÿJ$ead9c603-fa87-43c3-8139-cda12562e9f3
+g	java:S106°"+Replace this use of System.out by a logger.(¤½Ã‹J$5c3c9ea3-794f-4538-a6c5-49b8f219ed09
+“
+java:S3457³"Q%n should be used in place of \n to produce the platform-specific line separator.(ÈÖÔ¥ÿÿÿÿÿJ$19be8d19-1c8b-4394-9838-6fad6d27304e
+l	java:S106³"+Replace this use of System.out by a logger.(ÈÖÔ¥ÿÿÿÿÿJ$e86bbe75-2f86-4311-ae57-c53452a39398
