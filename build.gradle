@@ -14,4 +14,8 @@ dependencies {
     implementation group: 'commons-cli', name: 'commons-cli', version: '1.7.0'
 }
 
+run {
+    standardInput = System.in
+}
+
 mainClassName = 'App'
