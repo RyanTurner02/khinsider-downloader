@@ -2,11 +2,13 @@ public class Song {
     private String name;
     private String fileType;
     private String downloadLink;
+    private boolean isDownloaded;
 
     public Song(String name, String fileType, String downloadLink) {
         this.name = name;
         this.fileType = fileType;
         this.downloadLink = downloadLink;
+        this.isDownloaded = false;
     }
 
     public String getName() {
@@ -33,12 +35,21 @@ public class Song {
         this.downloadLink = downloadLink;
     }
 
+    public boolean isDownloaded() {
+        return isDownloaded;
+    }
+
+    public void setDownloaded(boolean downloaded) {
+        isDownloaded = downloaded;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
                 "name='" + name + '\'' +
                 ", fileType='" + fileType + '\'' +
                 ", downloadLink='" + downloadLink + '\'' +
+                ", isDownloaded=" + isDownloaded +
                 '}';
     }
 }

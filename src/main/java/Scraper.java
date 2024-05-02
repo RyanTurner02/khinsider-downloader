@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,6 +14,7 @@ import java.util.*;
 
 public class Scraper {
     private String url;
+    private String filePath;
     private Album album;
     private boolean countOption;
     private boolean indicesOption;
@@ -19,6 +22,7 @@ public class Scraper {
 
     public Scraper(String url) {
         this.url = url;
+        this.filePath = "";
         this.album = new Album();
 
         try {
@@ -29,9 +33,18 @@ public class Scraper {
     }
 
     public void scrapeAlbum() {
+        scrapeAlbumName();
+        this.filePath = String.format("downloads/%s/album.json", album.getName());
         scrapeFileType();
-        String userFileType = getUserFileType();
-        scrapeSongs(userFileType);
+        scrapeSongs();
+        exportAlbumToJson();
+        String fileType = getFileType();
+        downloadSongs(fileType);
+    }
+
+    private void scrapeAlbumName() {
+        String albumName = url.substring(url.lastIndexOf("/") + 1);
+        album.setName(albumName);
     }
 
     private void scrapeFileType() {
@@ -44,7 +57,7 @@ public class Scraper {
         }
     }
 
-    private String getUserFileType() {
+    private String getFileType() {
         List<String> fileTypes = new ArrayList<>(album.getSongs().keySet());
 
         if (fileTypes.isEmpty()) {
@@ -82,7 +95,9 @@ public class Scraper {
         }
     }
 
-    private void scrapeSongs(String userFileType) {
+    private void scrapeSongs() {
+        System.out.println("Scraping the album.");
+
         Element songTable = albumDoc.getElementById("songlist");
         Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
 
@@ -92,21 +107,43 @@ public class Scraper {
             try {
                 Document songDoc = Jsoup.connect(songURL).get();
                 Element pageContent = songDoc.getElementById("pageContent");
-                Elements songDownloadElements = pageContent.getElementsByTag("p").select("a[href$=" + userFileType + "]");
-                Element songDownloadElement = songDownloadElements.first();
+                Elements songDownloadElements = pageContent.getElementsByTag("p").select("a[href^=https://dl.vgmdownloads.com/]");
 
-                String songDownloadLink = songDownloadElement.attr("href");
-                String songName = songDownloadLink.substring(songDownloadLink.lastIndexOf("/") + 1);
-                String songNameDecoded = URLDecoder.decode(songName, "UTF-8");
-                String songFileType = songNameDecoded.substring(songNameDecoded.lastIndexOf("."));
+                for(Element songDownloadElement : songDownloadElements) {
+                    String songDownloadLink = songDownloadElement.attr("href");
+                    String songName = songDownloadLink.substring(songDownloadLink.lastIndexOf("/") + 1);
+                    String songNameDecoded = URLDecoder.decode(songName, "UTF-8");
+                    String songFileType = songNameDecoded.substring(songNameDecoded.lastIndexOf("."));
 
-                Song song = new Song(songNameDecoded, songFileType, songDownloadLink);
-                album.addSong(song, songFileType);
+                    Song song = new Song(songNameDecoded, songFileType, songDownloadLink);
+                    album.addSong(song, songFileType);
+                    System.out.println(song);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println(album);
+    }
+
+    private void exportAlbumToJson() {
+        System.out.println("Exporting the album information to a JSON file.");
+        Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+        File file = new File(filePath);
+
+        try {
+            FileUtils.write(file, gson.toJson(album), "UTF-8", true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Finished exporting.");
+    }
+
+    private void downloadSongs(String fileType) {
+        List<Song> songs = album.getSongs().get(fileType);
+
+        for (Song song : songs) {
+            System.out.println(song);
+        }
     }
 
     private void scrapeAlbumImages() {

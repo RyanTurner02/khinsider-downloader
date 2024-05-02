@@ -1,30 +1,39 @@
 
+	java:S112ˆ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8›Ø–Ûó1J$1b1e3622-8a65-4224-a093-bca7b5cda043
 ¥
-java:S1488¬"aImmediately return this expression instead of assigning it to the temporary variable "albumName".(çÅ¤Ò8ËÙÚÙó1J$b14418c9-4ec9-42a3-aea9-8b32e3a60b7c
-É
-java:S1186p"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ñù²¿ıÿÿÿÿ8äÚÚÙó1J$1518f0ca-3abc-46ca-984c-6ea878af0eef
-r	java:S1063"+Replace this use of System.out by a logger.(îÎ¢üÿÿÿÿ8êÚÚÙó1J$6745b1f2-89ef-4079-aae2-6d06f40b76fe
-r	java:S106="+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8íÚÚÙó1J$2f75b401-220f-43f5-b936-cb3b19c1c9cf
-m	java:S106D"+Replace this use of System.out by a logger.(ø—µÛ8îÚÚÙó1J$d609a572-a4e8-46fb-a644-b272d7b2dccc
+java:S1488Ñ"aImmediately return this expression instead of assigning it to the temporary variable "albumName".(çÅ¤Ò8Ø–Ûó1J$7cb2be9e-d07a-44cc-86b9-78e782cc91d5
+Ê
+java:S1186•"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ñù²¿ıÿÿÿÿ8±Ù–Ûó1J$fd9dc4ee-40d6-40f0-8147-5f1bd82f306a
+r	java:S106@"+Replace this use of System.out by a logger.(îÎ¢üÿÿÿÿ8»Ù–Ûó1J$4c011a00-8c9a-41ef-949a-0390d445863d
+r	java:S106J"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8½Ù–Ûó1J$e01ca82e-eb58-4483-b90d-674105c28bee
+m	java:S106Q"+Replace this use of System.out by a logger.(ø—µÛ8¾Ù–Ûó1J$a936cb64-b6d8-46c0-9bf7-09c857060777
 ”
-java:S3457P"Q%n should be used in place of \n to produce the platform-specific line separator.(¤¢û8ïÚÚÙó1J$e181be12-a2d5-4451-9e33-3160142f8ec1
-m	java:S106P"+Replace this use of System.out by a logger.(¤¢û8ïÚÚÙó1J$a6df07d4-bc25-4f69-a065-3b51badc85c0
-m	java:S106m"+Replace this use of System.out by a logger.(¥È¼Ë8óÚÚÙó1J$a7c24267-8ffc-43d1-822d-52dab9c21f58
-r	java:S106v"+Replace this use of System.out by a logger.(ªÕÙûÿÿÿÿ8ôÚÚÙó1J$5cda71bd-56b6-470a-a047-dbc285a6ead2
+java:S3457]"Q%n should be used in place of \n to produce the platform-specific line separator.(¤¢û8¿Ù–Ûó1J$e288ec6b-dc03-4c5b-9e6f-dc05b19073b0
+m	java:S106]"+Replace this use of System.out by a logger.(¤¢û8ÀÙ–Ûó1J$34fa35b1-74b7-4a5e-8f6d-2f303b0dd6d7
+m	java:S106c"+Replace this use of System.out by a logger.(Ü‹ğ8ÀÙ–Ûó1J$32272456-5d4b-498a-ac57-bf4ca06fde83
+m	java:S106x"+Replace this use of System.out by a logger.(šÄÚà8ÃÙ–Ûó1J$b5d8931f-84e0-4440-b5e4-0ca492f7d891
+s	java:S106"+Replace this use of System.out by a logger.(˜ÿóÊûÿÿÿÿ8ÃÙ–Ûó1J$76f10a91-af01-48eb-96a8-a9d55f09821b
+s	java:S106Š"+Replace this use of System.out by a logger.(å©ô´şÿÿÿÿ8ÇÙ–Ûó1J$79c4ff0b-d320-4b05-a57e-97ed6aed00f7
+n	java:S106‘"+Replace this use of System.out by a logger.(šÄÚà8ÈÙ–Ûó1J$cd7f5cd5-9c3a-4551-887f-810ec7dbcb38
+s	java:S106›"+Replace this use of System.out by a logger.(ªÕÙûÿÿÿÿ8ÉÙ–Ûó1J$c2ab0836-82aa-4cc6-afe0-c391f6dcd931
+…
+java:S1117±"<Rename "filePath" which hides the field declared at line 17.(‹Ìó‰øÿÿÿÿ8ÌÙ–Ûó1J$3698abcb-240a-4e56-bc34-99a23f7c02a3
 š
-java:S3457¢"Q%n should be used in place of \n to produce the platform-specific line separator.(‚¼ÕŸıÿÿÿÿ8ùÚÚÙó1J$e0a5328e-b51e-4006-89ea-078468e77b14
-s	java:S106¢"+Replace this use of System.out by a logger.(‚¼ÕŸıÿÿÿÿ8ùÚÚÙó1J$00eac629-02d9-4210-95da-cf4f6dd66ca1
+java:S3457Ç"Q%n should be used in place of \n to produce the platform-specific line separator.(‚¼ÕŸıÿÿÿÿ8ÍÙ–Ûó1J$571046ad-aac6-4065-a656-471f670aac7b
+s	java:S106Ç"+Replace this use of System.out by a logger.(‚¼ÕŸıÿÿÿÿ8ÍÙ–Ûó1J$49cc3a2a-9d0d-4af6-afd2-d88dc74bb970
 m
-java:S1172ª"*Remove this unused method parameter "doc".(œÀÎ=8úÚÚÙó1J$75ac3279-aa2e-4e1a-9945-9ce9bd913635
-s	java:S106Ä"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8şÚÚÙó1J$640e21b7-5bf3-49d9-993d-ef9195e1bd74
+java:S1172Ï"*Remove this unused method parameter "doc".(œÀÎ=8ÎÙ–Ûó1J$033e9e6f-f676-4bbd-aef5-a92f8eda8ec0
+s	java:S106é"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8ÑÙ–Ûó1J$eb29748c-5e36-47e7-855a-2d0f12591083
 š
-java:S3457Ç"Q%n should be used in place of \n to produce the platform-specific line separator.(ŒÈè„ÿÿÿÿÿ8şÚÚÙó1J$88585209-6209-4eec-a2b1-f542eda7e123
-s	java:S106Ç"+Replace this use of System.out by a logger.(ŒÈè„ÿÿÿÿÿ8şÚÚÙó1J$29c23e84-965c-41d2-9517-e9577a83a60d
+java:S3457ì"Q%n should be used in place of \n to produce the platform-specific line separator.(ŒÈè„ÿÿÿÿÿ8ÒÙ–Ûó1J$80332e88-67b5-4b70-94fe-6f6eff3c1ba5
+s	java:S106ì"+Replace this use of System.out by a logger.(ŒÈè„ÿÿÿÿÿ8ÒÙ–Ûó1J$cdc8fab6-4a3d-4fe7-8680-5b9a9a0013a8
 Š
-java:S3457×"AFormat specifiers should be used instead of string concatenation.(÷ŸçÊüÿÿÿÿ8€ÛÚÙó1J$de07f6c7-74c3-45cc-8150-114813ad6d0f
-n	java:S106ù"+Replace this use of System.out by a logger.(¤½Ã‹8ƒÛÚÙó1J$f1a8f080-3a7a-4c13-a9bb-64484c0d149f
+java:S3457ü"AFormat specifiers should be used instead of string concatenation.(÷ŸçÊüÿÿÿÿ8ÓÙ–Ûó1J$b7f078a6-dc91-4282-894c-ce09c3ffd6db
+€
+java:S1117ˆ"<Rename "filePath" which hides the field declared at line 17.(ãÀïã8ÖÙ–Ûó1J$b9dac20d-0495-4a1c-bb78-b32ab1903bb4
+n	java:S106"+Replace this use of System.out by a logger.(¤½Ã‹8×Ù–Ûó1J$47040f0b-43ba-4fa7-b6fd-476e50cee8a9
 š
-java:S3457ü"Q%n should be used in place of \n to produce the platform-specific line separator.(ÈÖÔ¥ÿÿÿÿÿ8„ÛÚÙó1J$26a2fb00-eeda-45e8-b894-3bae61c91bf6
-s	java:S106ü"+Replace this use of System.out by a logger.(ÈÖÔ¥ÿÿÿÿÿ8„ÛÚÙó1J$eda79bd0-b61e-4b77-a2bb-7e18f1926a47
-~
-java:S1144p"6Remove this unused private "scrapeAlbumImages" method.(Ñù²¿ıÿÿÿÿ8…ÛÚÙó1J$b4e4cd05-a0a8-4157-90d9-d6237e013ca7
+java:S3457¡"Q%n should be used in place of \n to produce the platform-specific line separator.(ÈÖÔ¥ÿÿÿÿÿ8×Ù–Ûó1J$2a6e7cc6-e77a-4d12-858d-9a42d8d5f838
+s	java:S106¡"+Replace this use of System.out by a logger.(ÈÖÔ¥ÿÿÿÿÿ8×Ù–Ûó1J$708b15dd-b5e4-45db-818f-d760b75a5013
+
+java:S1144•"6Remove this unused private "scrapeAlbumImages" method.(Ñù²¿ıÿÿÿÿ8ÙÙ–Ûó1J$9573294a-1ff9-4c49-bc25-36d863263a0f
