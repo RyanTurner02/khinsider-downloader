@@ -18,6 +18,16 @@ public class Scraper {
     private boolean indicesOption;
     private Document albumDoc;
 
+    public Scraper(String url) {
+        this.url = url;
+
+        try {
+            this.albumDoc = Jsoup.connect(url).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Scraper(String url, boolean countOption, boolean indicesOption) {
         this.url = url;
         this.countOption = countOption;
@@ -72,7 +82,7 @@ public class Scraper {
                 index++;
 
                 // check if the song already exists
-                if(new File(filePath).exists()) {
+                if (new File(filePath).exists()) {
                     continue;
                 }
 
@@ -140,13 +150,13 @@ public class Scraper {
         }
     }
 
-    public void downloadPictures() {
+    public void downloadImages() {
         String filePath = "downloads/" + getAlbumName(albumDoc) + "/img/";
         Elements pictures = albumDoc.getElementsByClass("albumImage").select("a");
         int index = 1;
 
         // iterate through each picture
-        for(Element currentPicture : pictures) {
+        for (Element currentPicture : pictures) {
             // get file information
             String currentPictureURL = currentPicture.attr("href");
 
@@ -156,13 +166,13 @@ public class Scraper {
             String currentFilePath = filePath + currentPictureName;
 
             // check if the picture already exists
-            if(new File(currentFilePath).exists()) {
+            if (new File(currentFilePath).exists()) {
                 index++;
                 continue;
             }
 
             // download the current picture
-            if(countOption) {
+            if (countOption) {
                 System.out.printf("[%d/%d] ", index++, pictures.size());
             }
 
@@ -170,7 +180,7 @@ public class Scraper {
 
             try {
                 FileUtils.copyURLToFile(new URL(currentPictureURL), new File(currentFilePath));
-            } catch(IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
