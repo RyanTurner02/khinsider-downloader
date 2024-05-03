@@ -19,7 +19,7 @@ public class App {
                 System.exit(0);
             }
 
-            if (cmd.hasOption("p")) {
+            if (cmd.hasOption("i")) {
                 imagesFlag = true;
             }
 
@@ -34,10 +34,10 @@ public class App {
         }
 
         Scraper scraper = new Scraper(albumURL);
-        scraper.scrapeAlbum();
+        scraper.downloadAlbum();
 
         if (imagesFlag) {
-//            scraper.downloadImages();
+            scraper.downloadImages();
         }
     }
 }

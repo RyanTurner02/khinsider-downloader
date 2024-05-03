@@ -1,21 +1,17 @@
 
+	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Â°Şó1J$0d161e40-7ffd-4271-95a3-f7ef6e3d00c5
 }
-java:S1141j"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8æåÍİó1J$3c352fd7-2fb4-4ab0-b13f-6a5660f1626e
-Ê
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ñù²¿ıÿÿÿÿ8ÒæÍİó1J$d7dd8478-8551-4fb0-a8af-2c340e623868
-r	java:S106:"+Replace this use of System.out by a logger.(îÎ¢üÿÿÿÿ8ÚæÍİó1J$f6339542-f027-4cd5-9b74-16a331e1bfcb
-r	java:S106D"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8ÜæÍİó1J$162aa078-7b12-4931-9252-e475f4b93429
-m	java:S106K"+Replace this use of System.out by a logger.(ø—µÛ8İæÍİó1J$1f3dc384-ca63-4beb-b63c-792992000963
+java:S1141i"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8•Ÿ†Şó1J$39a3be4f-96fe-4ac4-841d-10579b1fc527
+r	java:S1069"+Replace this use of System.out by a logger.(îÎ¢üÿÿÿÿ8ÚŸ†Şó1J$42771011-73af-43a8-980d-759bfe961da3
+r	java:S106C"+Replace this use of System.out by a logger.(Òó¯ëıÿÿÿÿ8ÜŸ†Şó1J$961fc332-ecf1-4f50-9746-ecb2f565ca88
+m	java:S106J"+Replace this use of System.out by a logger.(ø—µÛ8İŸ†Şó1J$93d0b9d4-2d94-4e36-b082-92623472b113
 ”
-java:S3457W"Q%n should be used in place of \n to produce the platform-specific line separator.(¤¢û8ßæÍİó1J$68f38452-c6d3-4f8d-9515-4648d06e8a97
-m	java:S106W"+Replace this use of System.out by a logger.(¤¢û8ßæÍİó1J$13eace5b-032b-4e93-ae65-cc87a31e28de
-m	java:S106]"+Replace this use of System.out by a logger.(Ü‹ğ8àæÍİó1J$26b5961b-9fc7-4b9c-8f07-af10e345e017
-r	java:S106w"+Replace this use of System.out by a logger.(¯²¯Œùÿÿÿÿ8éæÍİó1J$8e6ec261-5905-4e6d-9432-795ce6620d2d
-n	java:S106"+Replace this use of System.out by a logger.(óœ”¸8éæÍİó1J$8e8b0847-c6d7-4384-bc1f-bc1fc2d6a09e
-s	java:S106†"+Replace this use of System.out by a logger.(×”îØùÿÿÿÿ8¹ôÒİó1J$2599081c-4eac-405a-ac3c-ca55b0758bc7
-n	java:S106¨"+Replace this use of System.out by a logger.(¤½Ã‹8¸ğ×İó1J$bbecf923-0dfc-4370-9c4f-4e08b5f4aee7
-š
-java:S3457«"Q%n should be used in place of \n to produce the platform-specific line separator.(ÈÖÔ¥ÿÿÿÿÿ8éæÍİó1J$2e7cdd42-be2a-4f3f-9bde-14b0f8444641
-s	java:S106«"+Replace this use of System.out by a logger.(ÈÖÔ¥ÿÿÿÿÿ8†ÅÙİó1J$be0e7c55-31ff-44fa-9752-19bc4314e8f9
-
-java:S1144"6Remove this unused private "scrapeAlbumImages" method.(Ñù²¿ıÿÿÿÿ8ëæÍİó1J$a5e1c6ee-a66c-4182-8ddc-64cdd385c7f1
+java:S3457V"Q%n should be used in place of \n to produce the platform-specific line separator.(¤¢û8ŞŸ†Şó1J$48627a72-a9e3-4bd4-be0b-01ae82415797
+m	java:S106V"+Replace this use of System.out by a logger.(¤¢û8ßŸ†Şó1J$0261d567-d163-4520-bbe4-2691bd60e1f6
+”
+java:S3457\"Q%n should be used in place of \n to produce the platform-specific line separator.(öÅ–ù8 ì¤Şó1J$daceb2bd-f551-4d85-b710-8be74d396574
+m	java:S106\"+Replace this use of System.out by a logger.(öÅ–ù8àŸ†Şó1J$74f236e0-279c-4b78-a2fa-c96930d2331e
+r	java:S106v"+Replace this use of System.out by a logger.(¯²¯Œùÿÿÿÿ8ãŸ†Şó1J$173fdf33-5c03-41dc-93b1-89c794ff64bd
+m	java:S106"+Replace this use of System.out by a logger.(êï²ô8äŸ†Şó1J$4b06de44-84a0-46a5-8218-2d690fb2b391
+n	java:S106“"+Replace this use of System.out by a logger.(óœ”¸8äŸ†Şó1J$66225b29-3c82-41cd-9371-c43d5b149911
+s	java:S106˜"+Replace this use of System.out by a logger.(×”îØùÿÿÿÿ8ğ÷¢Şó1J$42b67b76-2e94-4845-a602-c8fa330c96b2

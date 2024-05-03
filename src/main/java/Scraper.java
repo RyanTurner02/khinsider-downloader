@@ -13,7 +13,6 @@ public class Scraper {
     private String url;
     private String albumDirectoryPath;
     private Album album;
-    private boolean countOption;
     private Document albumDoc;
 
     public Scraper(String url) {
@@ -28,7 +27,7 @@ public class Scraper {
         }
     }
 
-    public void scrapeAlbum() {
+    public void downloadAlbum() {
         scrapeAlbumName();
         scrapeFileType();
         String fileType = getFileType();
@@ -90,7 +89,7 @@ public class Scraper {
     }
 
     private void downloadSongs(String fileType) {
-        System.out.println("Scraping the album.");
+        System.out.printf("Downloading the album: %s.\n", album.getName());
 
         Element songTable = albumDoc.getElementById("songlist");
         Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
@@ -114,7 +113,7 @@ public class Scraper {
                     album.addSong(song, songFileType);
 
                     String songFilePath = String.format("%s%s", albumDirectoryPath, songNameDecoded);
-                    downloadSong(songDownloadLink, songFilePath);
+                    downloadFile(songDownloadLink, songFilePath);
                 } catch (Exception e) {
                     System.out.println("Could not find song.");
                 }
@@ -124,8 +123,27 @@ public class Scraper {
         }
     }
 
-    private void downloadSong(String url, String filePath) {
-        if(FileUtils.getFile(filePath).exists()) {
+    public void downloadImages() {
+        System.out.println("Downloading album images.");
+
+        String imageDirectoryPath = String.format("%s%s", albumDirectoryPath, "Images");
+        Elements images = albumDoc.getElementsByClass("albumImage").select("a");
+
+        for (Element image : images) {
+            try {
+                String imageURL = image.attr("href");
+                String imageName = imageURL.substring(imageURL.lastIndexOf("/") + 1);
+                String imageNameDecoded = URLDecoder.decode(imageName, "UTF-8");
+                String imageFilePath = String.format("%s%s", imageDirectoryPath, imageNameDecoded);
+                downloadFile(imageURL, imageFilePath);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void downloadFile(String url, String filePath) {
+        if (FileUtils.getFile(filePath).exists()) {
             System.out.println(filePath + " already exists.");
             return;
         }
@@ -135,46 +153,6 @@ public class Scraper {
             FileUtils.copyURLToFile(new URL(url), new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void scrapeAlbumImages() {
-
-    }
-
-    public void downloadImages(Album album) {
-        String filePath = "downloads/" + album.getName() + "/img/";
-        Elements pictures = albumDoc.getElementsByClass("albumImage").select("a");
-        int index = 1;
-
-        // iterate through each picture
-        for (Element currentPicture : pictures) {
-            // get file information
-            String currentPictureURL = currentPicture.attr("href");
-
-            String[] urlArr = currentPictureURL.split("/");
-            String currentPictureName = urlArr[urlArr.length - 1];
-
-            String currentFilePath = filePath + currentPictureName;
-
-            // check if the picture already exists
-            if (new File(currentFilePath).exists()) {
-                index++;
-                continue;
-            }
-
-            // download the current picture
-            if (countOption) {
-                System.out.printf("[%d/%d] ", index++, pictures.size());
-            }
-
-            System.out.printf("%s\n", currentFilePath);
-
-            try {
-                FileUtils.copyURLToFile(new URL(currentPictureURL), new File(currentFilePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
