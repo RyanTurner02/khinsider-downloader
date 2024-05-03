@@ -39,7 +39,7 @@ public class Scraper {
         String fileType = getFileType();
         downloadSongs(fileType);
 
-        if(imagesFlag) {
+        if (imagesFlag) {
             downloadCounter = 0;
             downloadImages();
         }
@@ -102,7 +102,7 @@ public class Scraper {
     private int getNumDigits(int num) {
         int numDigits = 0;
 
-        while(num > 0) {
+        while (num > 0) {
             num /= 10;
             numDigits++;
         }
@@ -134,7 +134,7 @@ public class Scraper {
                     String songFilePath = String.format("%s%s", albumDirectoryPath, songNameDecoded);
                     downloadFile(songDownloadLink, songFilePath);
                 } catch (Exception e) {
-                    System.out.println("Could not find song.");
+                    System.out.println(String.format("[%0" + numDigits + "d/%d] Could not find song.", ++downloadCounter, numFiles));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
