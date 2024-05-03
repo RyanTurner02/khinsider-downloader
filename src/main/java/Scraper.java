@@ -51,7 +51,7 @@ public class Scraper {
     }
 
     private String getFileType() {
-        List<String> fileTypes = new ArrayList<>(album.getSongs().keySet());
+        List<String> fileTypes = new ArrayList<>(album.getFileTypes());
 
         if (fileTypes.isEmpty()) {
             System.out.println("Could not retrieve any file types.");
@@ -107,11 +107,6 @@ public class Scraper {
                     String songDownloadLink = songDownloadElement.attr("href");
                     String songName = songDownloadLink.substring(songDownloadLink.lastIndexOf("/") + 1);
                     String songNameDecoded = URLDecoder.decode(songName, "UTF-8");
-                    String songFileType = songNameDecoded.substring(songNameDecoded.lastIndexOf("."));
-
-                    Song song = new Song(songNameDecoded, songFileType, songDownloadLink);
-                    album.addSong(song, songFileType);
-
                     String songFilePath = String.format("%s%s", albumDirectoryPath, songNameDecoded);
                     downloadFile(songDownloadLink, songFilePath);
                 } catch (Exception e) {

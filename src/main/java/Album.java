@@ -2,10 +2,10 @@ import java.util.*;
 
 public class Album {
     private String name;
-    private Map<String, List<Song>> songs;
+    private Set<String> fileTypes;
 
     public Album() {
-        songs = new TreeMap<>();
+        fileTypes = new TreeSet<>();
     }
 
     public String getName() {
@@ -16,28 +16,23 @@ public class Album {
         this.name = name;
     }
 
-    public Map<String, List<Song>> getSongs() {
-        return songs;
+    public Set<String> getFileTypes() {
+        return fileTypes;
     }
 
-    public void setSongs(Map<String, List<Song>> songs) {
-        this.songs = songs;
+    public void setFileTypes(Set<String> fileTypes) {
+        this.fileTypes = fileTypes;
     }
 
     public void addFileType(String fileType) {
-        songs.put(fileType, new ArrayList<>());
-    }
-
-    public void addSong(Song currentSong, String fileType) {
-        songs.get(fileType).add(currentSong);
-        songs.put(fileType, songs.get(fileType));
+        fileTypes.add(fileType);
     }
 
     @Override
     public String toString() {
         return "Album{" +
                 "name='" + name + '\'' +
-                ", songs=" + songs +
+                ", fileTypes=" + fileTypes +
                 '}';
     }
 }
