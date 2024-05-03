@@ -10,7 +10,7 @@ Download the latest version from the [Releases](https://github.com/RyanTurner02/
 ## Usage
 Run the `.jar` file through the command line and pass an album's URL as an argument if no additional arguments are being passed.
 
-`java -jar khi-dl.jar [albumURL]`
+`java -jar khinsider-downloader.jar [albumURL]`
 
 Additional arguments can be passed when running the `.jar` file through the command line.
 
