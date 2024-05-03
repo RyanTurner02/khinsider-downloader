@@ -121,7 +121,7 @@ public class Scraper {
     public void downloadImages() {
         System.out.println("Downloading album images.");
 
-        String imageDirectoryPath = String.format("%s%s", albumDirectoryPath, "Images");
+        String imageDirectoryPath = String.format("%s%s/", albumDirectoryPath, "Images");
         Elements images = albumDoc.getElementsByClass("albumImage").select("a");
 
         for (Element image : images) {
