@@ -14,11 +14,17 @@ public class Scraper {
     private String albumDirectoryPath;
     private Album album;
     private Document albumDoc;
+    private int downloadCounter;
+    private int numFiles;
+    private int numDigits;
 
     public Scraper(String url) {
         this.url = url;
         this.albumDirectoryPath = "";
         this.album = new Album();
+        this.downloadCounter = 0;
+        this.numFiles = 0;
+        this.numDigits = 0;
 
         try {
             this.albumDoc = Jsoup.connect(url).get();
@@ -27,11 +33,16 @@ public class Scraper {
         }
     }
 
-    public void downloadAlbum() {
+    public void downloadAlbum(boolean imagesFlag) {
         scrapeAlbumName();
         scrapeFileType();
         String fileType = getFileType();
         downloadSongs(fileType);
+
+        if(imagesFlag) {
+            downloadCounter = 0;
+            downloadImages();
+        }
     }
 
     private void scrapeAlbumName() {
@@ -88,11 +99,24 @@ public class Scraper {
         }
     }
 
+    private int getNumDigits(int num) {
+        int numDigits = 0;
+
+        while(num > 0) {
+            num /= 10;
+            numDigits++;
+        }
+
+        return numDigits;
+    }
+
     private void downloadSongs(String fileType) {
         System.out.printf("Downloading the album: %s.\n", album.getName());
 
         Element songTable = albumDoc.getElementById("songlist");
         Elements songLinks = songTable.getElementsByClass("playlistDownloadSong").select("a");
+        numFiles = songLinks.size();
+        numDigits = getNumDigits(numFiles);
 
         for (Element songLink : songLinks) {
             String songURL = String.format("https://downloads.khinsider.com/%s", songLink.attr("href"));
@@ -123,6 +147,8 @@ public class Scraper {
 
         String imageDirectoryPath = String.format("%s%s/", albumDirectoryPath, "Images");
         Elements images = albumDoc.getElementsByClass("albumImage").select("a");
+        numFiles = images.size();
+        numDigits = getNumDigits(numFiles);
 
         for (Element image : images) {
             try {
@@ -139,12 +165,12 @@ public class Scraper {
 
     private void downloadFile(String url, String filePath) {
         if (FileUtils.getFile(filePath).exists()) {
-            System.out.println(filePath + " already exists.");
+            System.out.println(String.format("[%0" + numDigits + "d/%d] %s already exists.", ++downloadCounter, numFiles, filePath));
             return;
         }
 
         try {
-            System.out.println(filePath);
+            System.out.println(String.format("[%0" + numDigits + "d/%d] %s", ++downloadCounter, numFiles, filePath));
             FileUtils.copyURLToFile(new URL(url), new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
